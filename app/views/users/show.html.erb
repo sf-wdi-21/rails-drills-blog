@@ -1,8 +1,11 @@
 <h2>User: <small><%= @user.first_name %> <%= @user.last_name %><small></h2>
 
+<h3>email: <%= @user.email %> </h3>
+
 <%= link_to 'View articles' %>
 <br>
-<%= link_to 'Edit user' %>
+<%= link_to 'Edit user', edit_user_path(@user) %>
 <br>
 <%= button_to 'Logout', logout_path, method: :get %>
-
+<br>
+<%= button_to 'Delete my account', user_path(@user), method: :delete %>

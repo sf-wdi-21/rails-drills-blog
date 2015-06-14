@@ -1,11 +1,20 @@
 <h2>Login</h2>
 
-<%= form_for :user, url: sessions_path do |f| %>
-  <%= f.label :email, "Email: " %>
-  <%= f.text_field :email %>
-  <%= f.label :password, "Password: " %>
-  <%= f.text_field :password, type: "password" %>
-  <%= f.submit "Login" %>
+<% if @errors %>
+  <p>Fix these problems with your login:</p>
+  <ul>
+    <% @errors.each do |error, mesg| %>
+      <li><%= error %>: <%= mesg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_tag sessions_path do %>
+  <%= label_tag "Email: " %>
+  <%= text_field_tag :email, nil, autofocus: "true" %>
+  <%= label_tag "Password: " %>
+  <%= password_field_tag :password %>
+  <%= submit_tag "Login" %>
 <% end %>
 <br>
 <%= link_to "Don't have an account?  Sign up here", signup_path %>
