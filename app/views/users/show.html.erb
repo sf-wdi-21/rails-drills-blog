@@ -1,0 +1,8 @@
+<h2>User: <small><%= @user.first_name %> <%= @user.last_name %><small></h2>
+
+<%= link_to 'View articles' %>
+<br>
+<%= link_to 'Edit user' %>
+<br>
+<%= button_to 'Logout', logout_path, method: :get %>
+
