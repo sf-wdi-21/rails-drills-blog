@@ -29,6 +29,10 @@
       <h3><%= article.title %>, <small>by <%= article.user.first_name %>
                                           <%= article.user.last_name %></small></h3>
       <p><%= article.content %></p>
+      <br>
+      <%= button_to 'Edit article', edit_user_article_path(@user, article), method: :get  %>
+      <br>
+      <%= button_to 'Delete article', user_article_path(@user, article), method: :delete  %>
       <hr>
     <% end %>
   <% end %>
