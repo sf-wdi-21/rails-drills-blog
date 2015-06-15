@@ -15,11 +15,11 @@ class SessionsController < ApplicationController
       # email and password entered, ok
       if User.find_by(email:params[:email])
         # found a user, ok
-        auth_user = User.confirm({email:params[:email], password:params[:password]})
-        if auth_user
+        @user = User.confirm({email:params[:email], password:params[:password]})
+        if @user
           # user authorized, ok
-          login auth_user
-          redirect_to user_path(auth_user)
+          login @user
+          redirect_to user_path(@user)
         else
           # bad password
           # display the login page again

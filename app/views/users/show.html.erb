@@ -1,4 +1,4 @@
-<% if current_user == @user.id %>
+<% if current_user.id == @user.id %>
 
   <h2>User: <small><%= @user.first_name %> <%= @user.last_name %><small></h2>
 
