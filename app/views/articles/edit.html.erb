@@ -1,0 +1,21 @@
+<h2>Edit Article</h2>
+
+<% if @errors %>
+  <p>Fix these problems with your article:</p>
+  <ul>
+    <% @errors.each do |error, mesg| %>
+      <li><%= error %>: <%= mesg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @article, url: user_article_path(@user, @article), method: "put" do |f| %>
+  <%= f.label "Title: " %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label "Content: " %>
+  <br>
+  <%= f.text_area :content, size: "60x12" %>
+  <br>
+  <%= f.submit "Update" %>
+<% end %>

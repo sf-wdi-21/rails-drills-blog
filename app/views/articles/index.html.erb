@@ -1,0 +1,43 @@
+<%= link_to "Back to my profile", user_path(current_user) %>
+<br>
+<%= link_to 'Post new article', new_user_article_path(current_user) %>
+<br>
+
+<!-- Show all the articles -->
+<% if @user.nil? %>
+  <% if @articles.empty? %>
+    <h3>No articles to show</h3>
+  <% else %>
+    <h2>Articles</h2>
+    <hr>
+    <% @articles.each do |article| %>
+      <h3><%= article.title %> <small>by <%= article.user.first_name %></small> </h3>
+      <p><%= article.content %></p>
+      <hr>
+    <% end %>
+  <% end %>
+
+<!-- Show a user's articles -->
+<% elsif current_user.id == @user.id %>
+  <% if @user.articles.empty? %>
+    <h3>No articles to show</h3>
+    <hr>
+  <% else %>
+    <h2>Articles <small>by <%= @user.first_name %> <%= @user.last_name %></small></h2>
+    <hr>
+    <% @user.articles.each do |article| %>
+      <h3><%= article.title %>, <small>by <%= article.user.first_name %>
+                                          <%= article.user.last_name %></small></h3>
+      <p><%= article.content %></p>
+      <hr>
+    <% end %>
+  <% end %>
+
+<!-- Restricted access -->
+<% else %>
+  <h3>You do not have access to this page</h3>
+<% end %>
+
+
+
+

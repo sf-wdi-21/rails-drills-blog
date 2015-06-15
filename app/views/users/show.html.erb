@@ -1,11 +1,23 @@
-<h2>User: <small><%= @user.first_name %> <%= @user.last_name %><small></h2>
+<% if current_user == @user.id %>
 
-<h3>email: <%= @user.email %> </h3>
+  <h2>User: <small><%= @user.first_name %> <%= @user.last_name %><small></h2>
 
-<%= link_to 'View articles' %>
-<br>
-<%= link_to 'Edit user', edit_user_path(@user) %>
-<br>
-<%= button_to 'Logout', logout_path, method: :get %>
-<br>
-<%= button_to 'Delete my account', user_path(@user), method: :delete %>
+  <h3>email: <%= @user.email %> </h3>
+
+  <%= link_to 'Post new article', new_user_article_path(@user) %>
+  <br>
+  <%= link_to 'View all articles', articles_path %>
+  <br>
+  <%= link_to 'View my articles', user_articles_path(@user) %>
+  <br>
+  <%= link_to 'Edit user', edit_user_path(@user) %>
+  <br><br>
+  <%= button_to 'Logout', logout_path, method: :get %>
+  <br>
+  <%= button_to 'Delete my account', user_path(@user), method: :delete %>
+
+<% else %>
+
+  <h2>You do not have access to this page</h2>
+
+<% end %>

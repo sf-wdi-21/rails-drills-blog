@@ -1,0 +1,19 @@
+<h2>New Article <small>by <%= @user.first_name %> <%= @user.last_name %></small></h2>
+
+<% if @errors %>
+  <p>Fix these problems with your article:</p>
+  <ul>
+    <% @errors.each do |error, mesg| %>
+      <li><%= error %>: <%= mesg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @article, url: user_articles_path(@user) do |f| %>
+  <%= f.label "Title: " %> <%= f.text_field :title, autofocus: "true" %>
+  <br><br>
+  <%= f.text_area :content, size: "60x12" %>
+  <br>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.submit "Post" %>
+<% end %>

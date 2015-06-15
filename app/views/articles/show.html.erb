@@ -1,0 +1,10 @@
+<%= link_to "Back to my articles", user_articles_path(@user)  %>
+
+<h2><%= @article.title %>
+      <small>by <%= @user.first_name %> <%= @user.last_name %></small></h2>
+
+<p><%= @article.content %></p>
+
+<%= button_to 'Edit article', edit_user_article_path(@user, @article), method: :get %>
+
+<%= button_to 'Delete article', user_article_path(@user, @article), method: :delete %>
