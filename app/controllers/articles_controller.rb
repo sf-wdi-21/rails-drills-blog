@@ -2,17 +2,9 @@ class ArticlesController < ApplicationController
 
   #
   # GET /articles
-  # GET /users/:user_id/articles
-  #
-  # TODO: Change route for a user's articles
-  #       Should go through users#show, not through here
   #
   def index
-    if params[:user_id]
-      @user = User.find params[:user_id]
-    else
-      @articles = Article.all
-    end
+    @articles = Article.all
     render :index
   end
 
