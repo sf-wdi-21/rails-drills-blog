@@ -1,8 +1,13 @@
 class User < ActiveRecord::Base
 
+  has_secure_password
+
   # validations
   validates :email, presence: true, uniqueness: true, confirmation: true
-  has_secure_password
+  # email_confirmation is a virtual field added when confirmation: true
+  # is set on the email attribute.  if nil the confirmation won't be done,
+  # so validate its presence
+  validates :email_confirmation, presence: true
 
   # associations
   has_many :articles

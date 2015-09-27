@@ -10,6 +10,23 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require bootstrap-sass/assets/stylesheets/_bootstrap.scss
  *= require_self
  */
+
+
+.navbar,
+.navbar-header > a,
+.nav > li.dropdown > a,
+.nav > li.dropdown.open > a,
+.nav > li.dropdown.open.active > a:hover,
+.nav > li.dropdown.open > ul.dropdown-menu > li > a:hover {
+  background-color: #286090;
+  color: white;
+}
+
+#user_email, #email,
+#user_password, #password,
+#user_password_confirmation, #password_confirmation {
+  width: 100%;
+}
