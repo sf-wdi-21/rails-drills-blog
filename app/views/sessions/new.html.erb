@@ -1,4 +1,3 @@
-<h2>Login</h2>
 
 <% if @errors %>
   <p>Fix these problems with your login:</p>
@@ -9,12 +8,41 @@
   </ul>
 <% end %>
 
-<%= form_tag sessions_path do %>
-  <%= label_tag "Email: " %>
-  <%= text_field_tag :email, nil, autofocus: "true" %>
-  <%= label_tag "Password: " %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Login" %>
-<% end %>
-<br>
-<%= link_to "Don't have an account?  Sign up here", signup_path %>
+<div class='col-md-4 col-md-offset-4'>
+  <div class='well'>
+    <div class='row'>
+
+      <div class='col-md-6'>
+        <h3>Sign in</h3>
+      </div>
+
+      <div class='col-md-6 text-right'>
+        Not registered?<br>
+        <%= link_to 'Sign up', signup_path %>
+      </div>
+
+    </div>
+
+    <%= form_tag sessions_path, method: :post do %>
+
+      <div class='form-group'>
+        <%= label_tag :email %>
+        <%= email_field_tag :email, nil,
+          { class: 'form-control', autofocus: true } %>
+      </div>
+
+      <div class='form-group'>
+        <%= label_tag :password %>
+        <%= password_field_tag :password, nil, class: 'form-control' %>
+      </div>
+
+      <%= submit_tag "Log in", class: 'btn btn-primary pull-right' %>
+
+    <% end %>
+    <br><br>
+
+  </div>
+</div>
+
+
+

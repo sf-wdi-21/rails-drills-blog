@@ -13,5 +13,6 @@
 //= require jquery/dist/jquery.min
 //= require jquery-ujs/src/rails
 //= require rails-turbolinks/lib/assets/javascripts/turbolinks
+//= require bootstrap-sass/assets/javascripts/bootstrap.min
 //= require bootstrap-validator/dist/validator.min
 //= require_tree .

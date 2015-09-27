@@ -1,27 +1,31 @@
-<% if current_user.id == @user.id %>
+<div class='container'>
 
-  <h2>User Profile: <small><%= @user.first_name %> <%= @user.last_name %><small></h2>
+  <% if current_user.id == @user.id %>
 
-  <h3>email: <%= @user.email %> </h3>
+    <h2>User Profile: <small><%= @user.first_name %> <%= @user.last_name %><small></h2>
 
-  <h3>My articles:</h3>
-  <ul>
-    <% @user.articles.each do |article| %>
-      <li><%= link_to "#{article.title}", user_article_path(@user, article) %></li>
-    <% end %>
-  </ul>
-  <%= link_to 'Post new article', new_user_article_path(@user) %>
-  <br>
-  <%= link_to 'View all articles', articles_path %>
-  <br>
-  <%= link_to 'Edit profile', edit_user_path(@user) %>
-  <br><br>
-  <%= button_to 'Logout', logout_path, method: :delete %>
-  <br>
-  <%= button_to 'Delete my account', user_path(@user), method: :delete %>
+    <h3>email: <%= @user.email %> </h3>
 
-<% else %>
+    <h3>My articles:</h3>
+    <ul>
+      <% @user.articles.each do |article| %>
+        <li><%= link_to "#{article.title}", user_article_path(@user, article) %></li>
+      <% end %>
+    </ul>
+    <%= link_to 'Post new article', new_user_article_path(@user) %>
+    <br>
+    <%= link_to 'View all articles', articles_path %>
+    <br>
+    <%= link_to 'Edit profile', edit_user_path(@user) %>
+    <br><br>
+    <%= button_to 'Logout', logout_path, method: :delete %>
+    <br>
+    <%= button_to 'Delete my account', user_path(@user), method: :delete %>
 
-  <h2>You do not have access to this page</h2>
+  <% else %>
 
-<% end %>
+    <h2>You do not have access to this page</h2>
+
+  <% end %>
+
+</div>

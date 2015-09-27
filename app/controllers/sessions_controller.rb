@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   # GET /login
   #
   def new
-    render :new
   end
 
   #
@@ -13,9 +12,10 @@ class SessionsController < ApplicationController
   def create
     if params[:email].present? && params[:password].present?
       # email and password entered, ok
-      if User.find_by(email:params[:email])
+      if User.find_by email: params[:email]
         # found a user, ok
-        @user = User.confirm({email:params[:email], password:params[:password]})
+        @user = User.confirm( { email: params[:email],
+                             password: params[:password] })
         if @user
           # user authorized, ok
           login @user
@@ -43,8 +43,8 @@ class SessionsController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :password)
-  end
+  # def user_params
+  #   params.require(:user).permit(:email, :password)
+  # end
 
 end

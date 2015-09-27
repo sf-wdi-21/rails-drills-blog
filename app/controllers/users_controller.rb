@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 
+  before_action :require_login, only: :show
+
   #
   # GET /user/new
   #
   def new
     @user = User.new
-    render :new
   end
 
   #
@@ -13,12 +14,10 @@ class UsersController < ApplicationController
   #
   def show
     @user = User.find params[:id]
-    render :show
   end
 
   def edit
     @user = User.find params[:id]
-    render :edit
   end
 
   #
@@ -26,11 +25,13 @@ class UsersController < ApplicationController
   #
   def create
     @user = User.new user_params
-    if @user.save
-      login(@user)
-      redirect_to user_path(@user)
+    if @user.valid?
+      @user.save
+      login @user
+      redirect_to @user, flash: { success: "Welcome, #{@user.email}" }
     else
-      @errors = @user.errors.messages
+      # TODO: pass through user.errors.messages
+      flash.now[:danger] = "Please fix these errors: #{@user.errors.messages}"
       render :new
     end
   end

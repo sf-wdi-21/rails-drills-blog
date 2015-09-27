@@ -22,22 +22,34 @@
       <% if current_user %>
         <div class="collapse navbar-collapse" id="collapse_button">
           <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %><span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Edit Profile</a></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to 'Logout', logout_path, method: :delete %>
-                  </li>
-                </ul>
-              </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %><span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Edit Profile</a></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to 'Logout', logout_path, method: :delete %>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       <% end %>
 
-      </div><!-- /.container-fluid -->
+    </div><!-- /.container-fluid -->
   </nav>
+
+  <!-- Flash messaging -->
+  <% flash.each do |type, msg| %>
+    <!-- type: success, info, warning, danger -->
+    <% if msg.is_a?(String) %>
+      <div class="text-center alert alert-<%= type %>" role="alert">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-hidden="true">&times;</button>
+        <%= content_tag :div, msg, :id => "flash_#{type}" %>
+      </div>
+    <% end %>
+  <% end %>
 
   <%= yield %>
 
