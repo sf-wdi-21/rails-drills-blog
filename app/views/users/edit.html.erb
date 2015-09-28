@@ -1,45 +1,10 @@
 <% if current_user.id == @user.id %>
 
-  <h2>Edit User: <small><%= @user.first_name %> <%= @user.last_name %></small></h2>
-
-  <% if @errors %>
-    <p>Fix these problems with your update:</p>
-    <ul>
-      <% @errors.each do |error, mesg| %>
-        <li><%= error %>: <%= mesg %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <%= form_for @user, url: user_path(@user), method: "put" do |f| %>
-    <%= f.label "First name: " %>
-    <br>
-    <%= f.text_field :first_name %>
-    <br>
-    <%= f.label "Last name: " %>
-    <br>
-    <%= f.text_field :last_name %>
-    <br>
-    <%= f.label "Email: " %>
-    <br>
-    <%= f.text_field :email %>
-    <br>
-    <!-- email confirmation removed since we don't want confirmation
-    failure if the user does not udpate email -->
-    <br>
-    <%= f.label "Password: " %>
-    <br>
-    <%= f.password_field :password %>
-    <br>
-    <%= f.label "Confirm password: " %>
-    <br>
-    <%= f.password_field :password_confirmation %>
-    <br>
-    <%= f.submit "Update" %>
-  <% end %>
+  <%= render partial: 'shared/user_form',
+    locals: { user: @user, title: @title } %>
 
 <% else %>
 
-  <h2>You do not have access to this page</h2>
+  <h2>You are not authorized to access this page</h2>
 
 <% end %>

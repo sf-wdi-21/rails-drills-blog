@@ -1,10 +1,25 @@
-<%= link_to "Back to my profile", user_path(@user)  %>
+<div class='container'>
 
-<h2><%= @article.title %>
-      <small>by <%= @user.first_name %> <%= @user.last_name %></small></h2>
+  <%= link_to 'All articles', articles_path %>
+  <br>
 
-<p><%= @article.content %></p>
+  <h3><%= @article.title %>
+        <small>by <%= @article.user.first_name %> <%= @article.user.last_name %></small></h3>
 
-<%= button_to 'Edit article', edit_user_article_path(@user, @article), method: :get %>
+  <hr>
+  <p><%= @article.content %></p>
+  <hr>
 
-<%= button_to 'Delete article', user_article_path(@user, @article), method: :delete %>
+  <div class='row'>
+    <div class='col-md-1'>
+      <%= button_to 'Edit article', edit_article_path(@article),
+          { method: :get, class: 'btn btn-primary' } %>
+    </div>
+    <div class='col-md-1'>
+      <%= button_to 'Delete article', article_path(@article),
+          { method: :delete, data: { confirm: 'Are you sure?' },
+             class: 'btn btn-danger' } %>
+    </div>
+  </div>
+
+</div>

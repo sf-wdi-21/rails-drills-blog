@@ -1,59 +1,42 @@
 class ArticlesController < ApplicationController
 
-  #
+  before_action :require_login
+  before_action :find_user, only: [:new, :create]
+
   # GET /articles
-  #
   def index
     @articles = Article.all
-    render :index
   end
 
-  #
   # GET /users/:user_id/articles/new
-  #
   def new
     @article = Article.new
-    @user = User.find params[:user_id]
-    render :new
   end
 
-  #
-  # GET /users/:user_id/articles/:id
-  #
+  # GET /articles/:id
   def show
-    @user = User.find params[:user_id]
     @article = Article.find params[:id]
-    render :show
   end
 
-  #
-  # GET /users/:user_id/articles/:id/edit
-  #
+  # GET /articles/:id/edit
   def edit
-    @user = User.find params[:user_id]
     @article = Article.find params[:id]
-    render :edit
   end
 
-  #
   # POST /users/:user_id/articles
-  #
   def create
-    @user = User.find params[:user_id]
     @article = Article.new article_params
     if @article.save
-      redirect_to user_article_path(@user, @article)
+      @user.articles << @article
+      redirect_to article_path(@article)
     else
-      @errors = @article.errors.messages
+      flash.now[:warning] = "Something went wrong"
       render :new
     end
   end
 
-  #
-  # PUT /users/:user_id/articles/:id
-  #
+  # PATCH /articles/:id
   def update
-    @user = User.find params[:user_id]
     @article = Article.find params[:id]
     if @article.update_attributes article_params
       redirect_to user_article_path(@user, @article)
@@ -63,20 +46,20 @@ class ArticlesController < ApplicationController
     end
   end
 
-  #
-  # DELETE /users/:user_id/articles/:id
-  #
+  # DELETE /articles/:id
   def destroy
-    user = User.find params[:user_id]
-    article = Article.find params[:id]
-    article.destroy
-    redirect_to user_articles_path(user)
+    Article.find(params[:id]).destroy
+    redirect_to articles_path
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :user_id)
+    params.require(:article).permit(:title, :content)
+  end
+
+  def find_user
+    @user = User.find params[:user_id]
   end
 
 end

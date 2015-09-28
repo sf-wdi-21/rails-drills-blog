@@ -2,29 +2,30 @@
 
   <% if current_user.id == @user.id %>
 
-    <h2>User Profile: <small><%= @user.first_name %> <%= @user.last_name %><small></h2>
+    <h3> <%= @user.first_name %> <%= @user.last_name %> </h3>
 
-    <h3>email: <%= @user.email %> </h3>
-
-    <h3>My articles:</h3>
-    <ul>
-      <% @user.articles.each do |article| %>
-        <li><%= link_to "#{article.title}", user_article_path(@user, article) %></li>
-      <% end %>
-    </ul>
-    <%= link_to 'Post new article', new_user_article_path(@user) %>
-    <br>
-    <%= link_to 'View all articles', articles_path %>
-    <br>
+    <h4> <%= @user.email %> </h4>
     <%= link_to 'Edit profile', edit_user_path(@user) %>
-    <br><br>
-    <%= button_to 'Logout', logout_path, method: :delete %>
+    <br><br><br>
+    <%= link_to 'New article', new_user_article_path(@user) %>&nbsp|&nbsp
+    <%= link_to 'All articles', articles_path %>
+
+    <h4> My articles: </h4>
+    <hr>
+    <% @user.articles.each do |article| %>
+      <ul>
+        <li> <%= link_to article.title, article_path(article) %> </li>
+      </ul>
+    <% end %>
+    <hr>
     <br>
-    <%= button_to 'Delete my account', user_path(@user), method: :delete %>
+    <%= button_to 'Delete my account', user_path(@user),
+        { method: :delete, data: { confirm: "Are you sure?" },
+          class: 'alert alert-danger' } %>
 
   <% else %>
 
-    <h2>You do not have access to this page</h2>
+    <h2>You are not authorized to access this page</h2>
 
   <% end %>
 

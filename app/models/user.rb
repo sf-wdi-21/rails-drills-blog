@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # email_confirmation is a virtual field added when confirmation: true
   # is set on the email attribute.  if nil the confirmation won't be done,
   # so validate its presence
-  validates :email_confirmation, presence: true
+  validates :email_confirmation, presence: true, if: :new_record?
 
   # associations
   has_many :articles
