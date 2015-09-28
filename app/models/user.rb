@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   has_many :articles
 
   # returns @user or false
-  def self.confirm params
-    user = User.find_by(email: params[:email])
-    user.try(:authenticate, params[:password])
+  def self.confirm user_params
+    user = User.find_by(email: user_params[:email])
+    user.try(:authenticate, user_params[:password])
   end
 
 end
