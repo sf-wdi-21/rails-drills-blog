@@ -7,13 +7,19 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # create 100 users
+
+User.destroy_all
+Article.destroy_all
+
 100.times do
 
   # build the user params
   user_params = Hash.new
+  user_params[:first_name] = FFaker::Name.first_name
+  user_params[:last_name] = FFaker::Name.last_name
   user_params[:email] = FFaker::Internet.email
   user_params[:email_confirmation] = user_params[:email]
-  user_params[:password]  = "123456"
+  user_params[:password]  = "password"
   user_params[:password_confirmation] = user_params[:password]
   # save the user
   new_user = User.create(user_params)

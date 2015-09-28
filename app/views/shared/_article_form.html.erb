@@ -1,0 +1,31 @@
+<div class='container'>
+  <div class='col-md-6'>
+    <%= console %>
+    <h2> <%= title %>&nbsp
+    <% if new_article %>
+      <small>by <%= user.first_name %> <%= user.last_name %></small></h2>
+    <% else %>
+      </h2>
+    <% end %>
+
+
+    <%= form_for article,
+        url: (new_article ? user_articles_path : article_path) do |f| %>
+
+      <div clas='form-group'>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', autofocus: "true"  %>
+      </div>
+      <br>
+
+      <div class='form-group'>
+        <%= f.label :content %>
+        <%= f.text_area :content, class: 'form-control', size: "60x12" %>
+      </div>
+
+      <%= f.submit class: 'btn btn-primary' %>
+
+    <% end %>
+
+  </div>
+</div>

@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       login @user
-      redirect_to @user, flash: { success: "Welcome, #{@user.email}" }
+      redirect_to @user, flash: { success: "Welcome, #{@user.first_name}!" }
     else
       flash.now[:danger] = "Please fix these errors: #{@user.errors.messages}"
       render :new

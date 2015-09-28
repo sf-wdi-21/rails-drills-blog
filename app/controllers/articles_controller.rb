@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
 
   before_action :require_login
   before_action :find_user, only: [:new, :create]
+  before_action :find_article, only: [:show, :edit, :update]
 
   # GET /articles
   def index
@@ -11,16 +12,17 @@ class ArticlesController < ApplicationController
   # GET /users/:user_id/articles/new
   def new
     @article = Article.new
+    @title = 'New article'
   end
 
   # GET /articles/:id
   def show
-    @article = Article.find params[:id]
   end
 
   # GET /articles/:id/edit
   def edit
-    @article = Article.find params[:id]
+    @user = @article.user
+    @title = 'Edit article'
   end
 
   # POST /users/:user_id/articles
@@ -28,7 +30,8 @@ class ArticlesController < ApplicationController
     @article = Article.new article_params
     if @article.save
       @user.articles << @article
-      redirect_to article_path(@article)
+      redirect_to article_path(@article),
+        flash: { success: "Article published!" }
     else
       flash.now[:warning] = "Something went wrong"
       render :new
@@ -37,11 +40,10 @@ class ArticlesController < ApplicationController
 
   # PATCH /articles/:id
   def update
-    @article = Article.find params[:id]
-    if @article.update_attributes article_params
-      redirect_to user_article_path(@user, @article)
+    if Article.find(params[:id]).update_attributes article_params
+      redirect_to article_path(@article)
     else
-      @errors = @article.errors.messages
+      flash.now[:warning] = "Something went wrong"
       render :edit
     end
   end
@@ -60,6 +62,10 @@ class ArticlesController < ApplicationController
 
   def find_user
     @user = User.find params[:user_id]
+  end
+
+  def find_article
+    @article = Article.find params[:id]
   end
 
 end
