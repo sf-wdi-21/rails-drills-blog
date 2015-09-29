@@ -34,6 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bower-rails'
 gem 'typhoeus'
+gem "paperclip", "~> 4.3"
 
 group :development, :test do
 

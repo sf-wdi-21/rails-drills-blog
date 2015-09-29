@@ -17,13 +17,13 @@
       <% if params[:action] == 'edit' %>
         <div class='col-md-6 text-right'>
           <br>
-          <%= link_to 'Cancel', :back %>
+          <%= link_to 'Cancel', user_path(user) %>
         </div>
       <% end %>
 
     </div>
 
-    <%= form_for user do |f| %>
+    <%= form_for user, html: { multipart: true } do |f| %>
 
       <div class='form-group'>
         <%= f.label :first_name %>
@@ -55,6 +55,15 @@
         <div class='form-group'>
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+
+      <% end %>
+
+      <% if params[:action] == 'edit' %>
+
+        <div class='form-group'>
+          <%= f.label :avatar %>
+          <%= f.file_field :avatar %>
         </div>
 
       <% end %>

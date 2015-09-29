@@ -21,8 +21,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new user_params
-    if @user.valid?
-      @user.save
+    if @user.save
       login @user
       redirect_to @user, flash: { success: "Welcome, #{@user.first_name}!" }
     else
@@ -33,12 +32,10 @@ class UsersController < ApplicationController
 
   # PATCH /users/:id
   def update
-    binding.pry
-    if @user.update_attributes user_params
+    if @user.update user_params
       redirect_to user_path(@user)
     else
-      binding.pry
-      flash.now[:warning] = "Problems with your changes: #{@user.errors.messages}"
+      flash.now[:danger] = "Please fix these errors: #{@user.errors.messages}"
       render :edit
     end
   end
@@ -52,7 +49,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :email_confirmation, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email,
+      :email_confirmation, :password, :password_confirmation, :avatar)
   end
 
   def find_user

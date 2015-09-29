@@ -32,3 +32,35 @@ Rails.application.routes.draw do
   # delete '/users/:user_id/articles/:id', to: 'articles#destroy'
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
