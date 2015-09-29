@@ -1,5 +1,25 @@
 == README
 
+After cloning, run:
+
+rake bower:install
+rake db:setup
+
+To create comments:
+1 - rails g model Comment content:text commentable_id:string commentable_type:string user_id:integer  -> and migrate
+
+2 - see comment.rb and article.rb for associations
+
+3 - create this route:
+post '/articles/:article_id/comments', to: 'comments#create_comment',
+  as: 'article_comments'
+
+4 - see articles#show for a view example
+
+NOTE: code in comments_controller came from a RailsCast
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

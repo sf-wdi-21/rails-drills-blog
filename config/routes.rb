@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   end
   resources :articles, only: [:index, :show, :edit, :update, :destroy]
 
+  post '/articles/:article_id/comments',
+    to: 'comments#create_comment',
+    as: 'article_comments'
+
 end
 
 

@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
     #   @article.get_keywords
     #   ...
     # end
+    @comments = @article.comments
   end
 
   # GET /articles/:id/edit
