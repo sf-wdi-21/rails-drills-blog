@@ -33,12 +33,14 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'bower-rails'
+gem 'typhoeus'
 
 group :development, :test do
 
   gem 'better_errors'
   gem 'pry-rails'
   gem 'ffaker'
+  gem 'dotenv-rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

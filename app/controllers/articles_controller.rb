@@ -17,6 +17,10 @@ class ArticlesController < ApplicationController
 
   # GET /articles/:id
   def show
+    # Alchemy API - disabled
+    # if @article.tags.empty? && @article.content.split.size > 100
+    #   @article.get_keywords
+    # end
   end
 
   # GET /articles/:id/edit

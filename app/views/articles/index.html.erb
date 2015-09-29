@@ -1,10 +1,14 @@
 <div class="container">
+
   <%= link_to 'Post new article', new_user_article_path(current_user) %>
   <br>
 
   <% if @articles.empty? %>
+
     <h3>No articles to show</h3>
+
   <% else %>
+
     <h3>Articles</h3>
     <hr>
     <ul>
@@ -12,7 +16,9 @@
         <li> <%= link_to article.title, article_path(article) %> </li>
       <% end %>
     </ul>
+
   <% end %>
+
 </div>
 
 
