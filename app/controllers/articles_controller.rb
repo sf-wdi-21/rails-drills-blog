@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 
   before_action :require_login
   before_action :find_user, only: [:new, :create]
-  before_action :find_article, only: [:show, :edit, :update]
+  before_action :find_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
   def index
@@ -45,17 +45,18 @@ class ArticlesController < ApplicationController
 
   # PATCH /articles/:id
   def update
-    if Article.find(params[:id]).update_attributes article_params
-      redirect_to article_path(@article)
+    if @article.update article_params
+      redirect_to article_path(@article),
+        flash: { success: "Changes saved" }
     else
-      flash.now[:warning] = "Something went wrong"
+      flash.now[:danger] = "Please fix the following errors: "
       render :edit
     end
   end
 
   # DELETE /articles/:id
   def destroy
-    Article.find(params[:id]).destroy
+    @article.destroy
     redirect_to articles_path
   end
 

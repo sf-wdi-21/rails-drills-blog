@@ -33,7 +33,8 @@ class UsersController < ApplicationController
   # PATCH /users/:id
   def update
     if @user.update user_params
-      redirect_to user_path(@user)
+      redirect_to user_path(@user),
+        flash: { success: "Changes saved" }
     else
       flash.now[:danger] = "Please fix these errors: #{@user.errors.messages}"
       render :edit
@@ -42,8 +43,10 @@ class UsersController < ApplicationController
 
   # DELETE /user/:id
   def destroy
+    logout
     @user.destroy
-    redirect_to root_path
+    redirect_to root_path,
+        flash: { info: "Fine.  We didn't like you anyway."}
   end
 
   private
