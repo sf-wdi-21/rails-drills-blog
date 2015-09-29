@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def create_comment
     unless find_commentable.comments.build(comment_params.merge user_id: session[:user_id]).save
-      flash[:notice] = "Comment validation failed"
+      flash[:warning] = "Can't add an empty comment"
     end
     redirect_to :back
   end

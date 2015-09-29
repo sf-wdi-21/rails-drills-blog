@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_action :require_login, only: [:show, :edit, :destroy]
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :auth_user?, only: :edit
 
   # GET /users/new
   def new
@@ -58,6 +59,17 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find params[:id]
+  end
+
+  def auth_user?
+    # layout: false prevents the application layout page from loading
+    # returning false/true stops/allows the action
+    unless current_user.id == params[:id]
+      render file: 'public/401.html', status: 401, layout: false
+      false
+    else
+      true
+    end
   end
 
 end

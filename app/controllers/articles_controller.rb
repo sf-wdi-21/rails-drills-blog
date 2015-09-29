@@ -1,8 +1,10 @@
 class ArticlesController < ApplicationController
 
+  # callbacks
   before_action :require_login
-  before_action :find_user, only: [:new, :create]
+  before_action :find_user, only: [:new, :create, :auth_user?]
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :auth_user?, only: [:new, :edit]
 
   # GET /articles
   def index
@@ -73,6 +75,26 @@ class ArticlesController < ApplicationController
 
   def find_article
     @article = Article.find params[:id]
+  end
+
+  def auth_user?
+    # do not execute the find_article callback before this method,
+    # because having @article.user.id in the code will crash if @article is nil
+    # (which it may be if we're coming here from articles#new)
+    # instead, call find_user and use those results to determine how to set user_id
+    if @user
+      user_id = @user.id
+    else
+      user_id = Article.find(params[:id]).user.id
+    end
+    unless current_user.id == user_id
+      # layout: false prevents the application layout page from loading
+      # returning false/true stops/allows the action
+      render file: 'public/401.html', status: 401, layout: false
+      false
+    else
+      true
+    end
   end
 
 end

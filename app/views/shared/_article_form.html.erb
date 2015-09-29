@@ -1,12 +1,23 @@
 <div class='container'>
-  <div class='col-md-6'>
 
-    <h2> <%= title %>&nbsp
-    <% if new_article %>
-      <small>by <%= user.first_name %> <%= user.last_name %></small></h2>
-    <% else %>
-      </h2>
-    <% end %>
+  <div class='col-md-6'>
+    <!-- nest a row so I can put the title and cancel link on the same line -->
+    <div class='row'>
+
+      <div class='col-md-8'>
+        <h2 style> <%= title %>&nbsp
+        <% if new_article %>
+          <small>by <%= user.first_name %> <%= user.last_name %></small></h2>
+        <% else %>
+          </h2>
+        <% end %>
+      </div>
+      <!-- padding is necessary to vertically align the link with the headline -->
+      <div class='col-md-4 text-right' style='padding-top: 33px'>
+        <%= link_to 'Cancel', :back %>
+      </div>
+
+    </div>
 
     <%= form_for article,
         url: (new_article ? user_articles_path : article_path) do |f| %>
@@ -31,4 +42,5 @@
     <% end %>
 
   </div>
+
 </div>
