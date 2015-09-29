@@ -11,7 +11,7 @@
 User.destroy_all
 Article.destroy_all
 
-100.times do
+10.times do
 
   # build the user params
   user_params = Hash.new
@@ -21,6 +21,7 @@ Article.destroy_all
   user_params[:email_confirmation] = user_params[:email]
   user_params[:password]  = "password"
   user_params[:password_confirmation] = user_params[:password]
+  user_params[:avatar] = FFaker::Avatar.image
   # save the user
   new_user = User.create(user_params)
 

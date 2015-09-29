@@ -20,9 +20,7 @@ class Article < ActiveRecord::Base
         outputMode: "json"
       }
     )
-    words = JSON.parse(res.body)
-    binding.pry
-    words["keywords"].map { |w| w['text'] }
+    words = JSON.parse(res.body)["keywords"].map { |w| w['text'] }
     @keywords = words.join(" | ")
   end
 

@@ -32,14 +32,14 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'bower-rails'
 gem 'typhoeus'
 gem "paperclip", "~> 4.3"
 
 group :development, :test do
 
-  gem 'better_errors'
+  gem 'bower-rails', "~> 0.10.0"
   gem 'pry-rails'
+  gem 'better_errors'
   gem 'ffaker'
   gem 'dotenv-rails'
 

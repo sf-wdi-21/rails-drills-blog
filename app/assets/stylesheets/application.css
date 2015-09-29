@@ -14,7 +14,6 @@
  *= require_self
  */
 
-
 .navbar,
 .navbar-header > a,
 .nav > li.dropdown > a,
@@ -25,8 +24,3 @@
   color: white;
 }
 
-#user_email, #email,
-#user_password, #password,
-#user_password_confirmation, #password_confirmation {
-  width: 100%;
-}
