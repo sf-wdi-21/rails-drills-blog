@@ -1,5 +1,5 @@
 
-NOTE that this solution contains code (e.g. styling) that goes beyond the requirements of the timed drills in which you were striving for bare dones functionality.
+Note that this solution contains code (e.g. styling) that goes beyond the requirements of the timed drills in which you were striving for bare-bones functionality.
 
 After cloning, run:
 
