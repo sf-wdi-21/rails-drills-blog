@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
       redirect_to article_path(@article),
         flash: { success: "Article published!" }
     else
-      flash.now[:warning] = "Something went wrong"
+      flash.now[:danger] = "Please fix these errors: #{@article.errors.messages}"
       render :new
     end
   end
@@ -50,9 +50,9 @@ class ArticlesController < ApplicationController
   def update
     if @article.update article_params
       redirect_to article_path(@article),
-        flash: { success: "Changes saved" }
+        flash: { success: "Changes saved!" }
     else
-      flash.now[:danger] = "Please fix the following errors: "
+      flash.now[:danger] = "Please fix these errors: #{@article.errors.messages}"
       render :edit
     end
   end
