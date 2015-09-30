@@ -6,9 +6,9 @@
     <br>
 
     <h3><%= @article.title %></h3>
-    <h4>
+    <h4>by
       <a href="<%= user_path(@article.user) %>">
-        by <%= @article.user.first_name %> <%= @article.user.last_name %>
+        <%= @article.user.first_name %> <%= @article.user.last_name %>
       </a>
     </h4>
 
