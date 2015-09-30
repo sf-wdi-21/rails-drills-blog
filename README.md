@@ -20,7 +20,7 @@ post '/articles/:article_id/comments', to: 'comments#create_comment', as: 'artic
 
 4. see articles#show for a view example
 
-5. Remember to add a new foreign key to Comment for any additionaly resource which `has_many` comments.  Also a new POST route similar to the existing one.
+5. Remember to add a new foreign key to Comment for any additional resource which `has_many` comments.  Also a new POST route similar to the existing one.
 
 
 DISCLAIMER: code in comments_controller.rb came from a RailsCast by Ryan Bates
