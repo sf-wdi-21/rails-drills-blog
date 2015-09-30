@@ -1,14 +1,13 @@
-== README
 
-NOTE that this solution contains code beyond the requirements of the timed drills in which you were striving for bare dones functionality.
+NOTE that this solution contains code (e.g. styling) that goes beyond the requirements of the timed drills in which you were striving for bare dones functionality.
 
 After cloning, run:
 
-- bundle install
+1. bundle install
 
-- rake bower:install (app uses the bower-rails gem for front-end dependencies)
+2. rake bower:install (app uses the bower-rails gem for front-end dependencies)
 
-- rake db:setup (creates the database and runs seeds.rb)
+3. rake db:setup (creates the database and runs seeds.rb)
 
 To create a Comment model that can `belong_to` any other model (polymorphic association):
 
@@ -21,9 +20,9 @@ post '/articles/:article_id/comments', to: 'comments#create_comment', as: 'artic
 
 4. see articles#show for a view example
 
-Remember to add a new foreign key to Comment for any additionaly resource which `has_many` comments.
+5. Remember to add a new foreign key to Comment for any additionaly resource which `has_many` comments.  Also a new POST route similar to the existing one.
 
 
-DISCLAIMER: code in comments_controller came from a RailsCast by Ryan Bates
+DISCLAIMER: code in comments_controller.rb came from a RailsCast by Ryan Bates
 
 
